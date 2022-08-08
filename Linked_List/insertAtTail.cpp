@@ -22,10 +22,11 @@ void insertTail(Node *&head , int value){
     }
     Node *temp = head ;
     
+    //traverse to the last node
     while(temp->Next != NULL){
-        temp = temp->Next; // until temp update untill temp->Next not found NULL 
+        temp = temp->Next; // temp update untill temp->Next != NULL 
+        
     }
-    // cout<<temp->value <<endl;
     temp->Next = newNode ; // if found null we set newNode to temp->Next = newNode
 
 }
@@ -44,6 +45,6 @@ int main()
     Node *head = NULL;
     insertTail(head,100);
     insertTail(head,300);
-    print_list(head);
+    // print_list(head);
     return 0;
 }
