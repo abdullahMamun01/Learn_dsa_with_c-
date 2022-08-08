@@ -13,6 +13,52 @@ public:
         this->Next = NULL;
     }
 };
+/* 
+1.Traverse the Linked list upto position-1 nodes.
+2.Once all the position-1 nodes are traversed, allocate memory and the given data to the new node.
+3.Point the next pointer of the new node to the next of current node.
+4.Point the next pointer of current node to the new node.
+
+
+ */
+void isertAtSpecificPosition(Node *head ,int position,int value){
+    //copy of head
+    Node *temp = head;
+    //create new node for insert value specific position
+    Node *newNode = new Node(value);
+    int i = 1; //if we count index we have to start with 0 
+    //traverse positon-1 because we have to finde out insert befor positon
+    while(i< position-1){
+        //update node until position-1 
+        temp = temp->Next ;
+        i++;
+    }
+    //current node is position-1 node
+    Node *currenNode = temp ;
+    //we have link with  newNode to currentNode of next node 
+    newNode->Next = currenNode->Next;
+    //after link newNode next node now we have update connecting the currentNode to next node
+    currenNode->Next = newNode ;
+    
+
+
+}
+void insertTail(Node *&head , int value){
+    Node *newNode = new Node(value); // create new node for insert in tail
+    if(head == NULL){
+        head = newNode ; // if NULL we set head value is create newNode to point
+        return;
+    }
+    Node *temp = head ;
+    
+    //traverse to the last node
+    while(temp->Next != NULL){
+        temp = temp->Next; // temp update untill temp->Next != NULL 
+        
+    }
+    temp->Next = newNode ; // if found null we set newNode to temp->Next = newNode
+
+}
 
 void print_list(Node *n)
 {
@@ -22,37 +68,19 @@ void print_list(Node *n)
         n = n->Next;
     }
 }
-void insertList(Node *head, int pos, int value)
-{
-    if (pos == 0)
-    {
-        Node *new_node = new Node(value);
-        Node *prev_head = head;
-        head = new_node;
-        head->Next = prev_head;
-        return;
-    }
-    Node *tmp = head; // we have to copy of heade node . we can not touch head node
-    for (int i = 0; i < pos - 1; i++)
-    {
-        tmp = tmp->Next; //
-    }
-    cout << tmp->Next->value << endl; // because of we have to connect after insert node to next node link
-    Node *insert = new Node(value);   // create new node for insert value
-    Node *save_next = tmp->Next;      // we have save next node before insert value
-    tmp->Next = insert;               // now connect with present node to insert new node
-    insert->Next = save_next;         // afeter insert we have connect next node
-}
+
 int main()
 {
-    Node *head = new Node(10);
-    Node *second = new Node(20);
-    Node *third = new Node(30);
-    Node *fourth = new Node(40);
-    head->Next = second;
-    second->Next = third;
-    third->Next = fourth;
-    insertList(head, 2, 100);
+    Node *head = NULL;
+    insertTail(head,100); 
+    insertTail(head,200);
+    insertTail(head,300);
+    insertTail(head,500);
+    insertTail(head,600);
+    insertTail(head,700);
+    //before insert 100 200 300 500 600 700 
+    isertAtSpecificPosition(head,4,400);
+    //after insert 100 200 300 400 500 600 700 
     print_list(head);
     return 0;
 }
