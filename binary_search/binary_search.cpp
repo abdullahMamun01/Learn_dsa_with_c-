@@ -13,7 +13,6 @@ int binary_search(int n, int arr[], int search_Element)
     while (low <= high)
     {
         mid = (low + high) / 2;
-        cout << low << " " << mid << " " << high << endl;
         cout << "hello" << endl;
         if (arr[mid] == search_Element)
         {

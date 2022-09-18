@@ -30,7 +30,31 @@ void insertTail(Node *&head , int value){
     temp->Next = newNode ; // if found null we set newNode to temp->Next = newNode
 
 }
+void insertBetweenList(Node *&head ,int value){
+     Node *tmp = head;
+        Node *tmpNext = head->Next ;
+        while(tmp->Next &&  !(tmp->value <= value && tmpNext->value >= value)){
+            tmp = tmp->Next;
+            tmpNext = tmpNext->Next ;
+        }
+    Node *newNode = new Node(value);
+    tmp->Next = newNode ;
+    newNode->Next = tmpNext;
+}
 
+void deleteFromList(Node *&head){
+    Node *tmp = head;
+    head = head->Next ;
+    delete tmp;
+}
+void circularLinkedList(Node *&head){
+    Node *tmp = head ;
+    while(tmp->Next !=NULL){
+        tmp = tmp->Next ;
+    }
+    tmp->Next = head ;
+    // cout<<tmp->value<<endl;
+}
 void print_list(Node *n)
 {
     while (n != NULL)
@@ -43,8 +67,13 @@ void print_list(Node *n)
 int main()
 {
     Node *head = NULL;
-    insertTail(head,100);
-    insertTail(head,300);
-    // print_list(head);
+    insertTail(head,14);
+    insertTail(head,25);
+    insertTail(head,33);
+    insertTail(head,47);
+    insertBetweenList(head,40);
+    deleteFromList(head);
+    circularLinkedList(head);
+    print_list(head);
     return 0;
 }
